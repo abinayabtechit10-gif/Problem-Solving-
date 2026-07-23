@@ -1,0 +1,50 @@
+1.class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+        boolean[] flag = new boolean[1001];
+
+        for (int num : nums1) {
+            flag[num] = true;
+        }
+
+        int[] result = new int[Math.min(nums1.length, nums2.length)];
+        int index = 0;
+
+        for (int num : nums2) {
+            if (flag[num]) {
+                result[index++] = num;
+                flag[num] = false;
+            }
+        }
+
+        return Arrays.copyOf(result, index);
+    }
+}
+
+2.class Solution {
+    public int thirdMax(int[] nums) {
+        long max = Long.MIN_VALUE;
+        long secondMax = Long.MIN_VALUE;
+        long thirdMax = Long.MIN_VALUE;
+
+        for (int num : nums) {
+            long val = num;
+
+            if (val == max || val == secondMax || val == thirdMax) {
+                continue;
+            }
+
+            if (val > max) {
+                thirdMax = secondMax;
+                secondMax = max;
+                max = val;
+            } else if (val > secondMax) {
+                thirdMax = secondMax;
+                secondMax = val;
+            } else if (val > thirdMax) {
+                thirdMax = val;
+            }
+        }
+
+        return thirdMax == Long.MIN_VALUE ? (int) max : (int) thirdMax;
+    }
+}
