@@ -1,0 +1,32 @@
+1.class Solution {
+    public int findMin(int[] nums) {
+        int n = nums.length - 1;
+        int last = nums[n];
+        int left = 0, right = n;
+
+        while (left < right) {
+            int mid = (left + right) >> 1;
+            if (nums[mid] > last) left = mid + 1;
+            else right = mid;
+        }
+
+        return nums[left];
+    }
+}
+
+2.class Solution {
+    public List<String> readBinaryWatch(int turnedOn) {
+        ArrayList<String> result=new ArrayList<>();
+        for(int hh=0;hh<=11;hh++){
+            for(int mm=0;mm<=59;mm++){
+                if(Integer.bitCount(hh)+
+                Integer.bitCount(mm)==turnedOn){
+                    
+                    result.add(hh + ":" + (mm < 10 ? "0" : "") + mm);
+                }
+            }
+        }
+        return result;
+
+    }
+}
