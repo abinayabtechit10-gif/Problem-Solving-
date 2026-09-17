@@ -1,0 +1,50 @@
+1.class Solution {
+
+    int ans = 0;
+
+    public int findTilt(TreeNode root) {
+
+        solve(root);
+
+        return ans;
+    }
+
+    public int solve(TreeNode root) {
+
+        if (root == null) {
+            return 0;
+        }
+
+        int left = solve(root.left);
+
+        int right = solve(root.right);
+
+        ans += Math.abs(left - right);
+
+        return root.val + left + right;
+    }
+}
+
+2.lass Solution 
+{
+  public int minDiffInBST(TreeNode root) 
+  {
+    inorder(root);
+    return ans;
+  }
+
+  private int ans = Integer.MAX_VALUE;
+  private Integer pred = null;
+
+  private void inorder(TreeNode root) 
+  {
+    if (root == null)
+      return;
+
+    inorder(root.left);
+    if (pred != null)
+      ans = Math.min(ans, root.val - pred);
+    pred = root.val;
+    inorder(root.right);
+  }
+}
