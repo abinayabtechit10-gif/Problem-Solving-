@@ -1,0 +1,29 @@
+1.class Solution {
+    public boolean validMountainArray(int[] arr) {
+        if(arr.length < 3) return false;
+        int l = 0;
+        int r = arr.length - 1;
+        while(l + 1 < arr.length - 1 && arr[l] < arr[l + 1]) l++;
+        while(r - 1 > 0 && arr[r] < arr[r - 1]) r--;
+        return l == r;
+    }
+}
+
+2.class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int[] res = new int[nums.length];
+        int left = 0;
+        int right = nums.length - 1;
+
+        for (int i = nums.length - 1; i >= 0; i--) {
+            if (Math.abs(nums[left]) > Math.abs(nums[right])) {
+                res[i] = nums[left] * nums[left];
+                left++;
+            } else {
+                res[i] = nums[right] * nums[right];
+                right--;
+            }
+        }
+        return res;        
+    }
+}
